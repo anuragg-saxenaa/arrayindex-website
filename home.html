@@ -9,6 +9,11 @@
   <meta name="keywords" content="ArrayIndex, template, html, sass, jquery">
   <meta name="author" content="Anurag Saxena">
   <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    /* Button Styles */
+    .open-popup-btn {
+    } 
+  </style>
 </head>
 <body>
 
@@ -109,6 +114,15 @@
                       </div>
                       <p class="slider--item-title">Technical expertise</p>
                       <p class="slider--item-description">Our certified developers and inspired leadership will ensure a positive experience while respecting industry best practices. </p>
+                    </a>
+                  </li>
+                  <li class="slider--item slider--item-right1">
+                    <a href="#0">
+                      <div class="slider--item-image">
+                        <img class="open-popup-btn" src="assets/img/housecalculator.jpg" alt="house calculator">
+                      </div>
+                      <p class="slider--item-title">House Number Sum Calculator</p>
+                      <p class="slider--item-description"> Find the Single-Digit Sum of a House Number: Enter a number to get its single-digit sum automatically calculated. Example: 1234 = 1 + 2 + 3 + 4 = 10 -> 1 + 0 = 1. </p>
                     </a>
                   </li>
                 </ul>
@@ -276,8 +290,30 @@
   </ul>
 </div>
 
+<div id="myModal" class="modal">
+  <div class="modal-content" id="modalContent">
+    <button id="closeModalBtn">Close</button>
+  </div>
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
 <script src="assets/js/functions-min.js"></script>
+<script>
+  // Attach click event listener to the open popup button
+  const openPopupBtn = document.querySelector('.open-popup-btn');
+  openPopupBtn.addEventListener('click', openPopupWindow);
+
+  // Open the target URL in a popup window
+  function openPopupWindow() {
+    const targetURL = 'house_number-calculator.html'; // Replace with the target URL
+    const width = 800; // Width of the popup window
+    const height = 600; // Height of the popup window
+    const left = (window.innerWidth - width) / 2; // Calculate the left position
+    const top = (window.innerHeight - height) / 2; // Calculate the top position
+
+    window.open(targetURL, 'popupWindow', `width=${width}, height=${height}, left=${left}, top=${top}`);
+  }
+</script>
 </body>
 </html>
