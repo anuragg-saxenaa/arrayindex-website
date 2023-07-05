@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>House Number Sum</title>
+  <style>
+    @keyframes colorAnimation {
+      0% {
+        color: #ffffff;
+      }
+
+      50% {
+        color: #1a73e8;
+      }
+
+      100% {
+        color: #ffffff;
+      }
+    }
+
+    @keyframes resultAnimation {
+      0% {
+        color: #ffffff;
+      }
+
+      50% {
+        color: #ff9800;
+      }
+
+      100% {
+        color: #ffffff;
+      }
+    }
+
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 28px;
+      text-align: center;
+      animation: colorAnimation 3s infinite;
+    }
+
+    .how-to-use {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #ffffff;
+      font-size: 16px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ffffff;
+      border-radius: 3px;
+      font-size: 14px;
+      background-color: #1e1e1e;
+      color: #ffffff;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      animation: resultAnimation 3s infinite;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <h1 style="animation-duration: 3s;">House Number Sum</h1>
+    <div class="how-to-use">
+      <p>
+        Welcome to the House Number Sum calculator! This tool helps you find the single-digit sum of a house number.
+        Enter the house number below and the result will be calculated automatically.
+      </p>
+      <p>
+        Example: If you enter the house number "1234", the sum of its digits will be calculated as "1 + 2 + 3 + 4 = 10"
+        and then "1 + 0 = 1".
+      </p>
+      <strong>How to Use:</strong> Enter a house number and the result will be displayed automatically.
+    </div>
+    <form id="houseNumberForm">
+      <label for="houseNumber">Enter House Number:</label>
+      <input type="text" id="houseNumber" name="houseNumber" required>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function getSingleDigitSum(houseNumber) {
+      let sum = 0;
+
+      for (let i = 0; i < houseNumber.length; i++) {
+        const digit = houseNumber[i];
+        if (!isNaN(digit)) {
+          const digitValue = parseInt(digit);
+          sum += digitValue;
+        }
+      }
+
+      while (sum > 9) {
+        let newSum = 0;
+        while (sum > 0) {
+          newSum += sum % 10;
+          sum = Math.floor(sum / 10);
+        }
+        sum = newSum;
+      }
+
+      return sum;
+    }
+
+    const houseNumberInput = document.getElementById('houseNumber');
+    const resultDiv = document.getElementById('result');
+
+    houseNumberInput.addEventListener('input', () => {
+      const houseNumber = houseNumberInput.value;
+      const singleDigitSum = getSingleDigitSum(houseNumber);
+      resultDiv.textContent = `Single-Digit Sum: ${singleDigitSum}`;
+    });
+  </script>
+</body>
+
+</html>
