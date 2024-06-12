@@ -37,21 +37,26 @@
     </div>
     <form id="houseNumberForm">
       <label for="houseNumber">Enter House Number:</label>
-      <input type="text" id="houseNumber" name="houseNumber" required maxlength="6">
+      <input type="text" id="houseNumber" name="houseNumber" required maxlength="20">
     </form>
     <div id="result"></div>
   </div>
 
   <script>
+    const charToValue = {
+      'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 8, 'g': 3, 'h': 5, 'i': 1,
+      'j': 1, 'k': 2, 'l': 3, 'm': 4, 'n': 5, 'o': 7, 'p': 8, 'q': 1, 'r': 2,
+      's': 3, 't': 4, 'u': 6, 'v': 6, 'w': 6, 'x': 5, 'y': 1, 'z': 7
+    };
+
     function getSingleDigitSum(houseNumber) {
       let sum = 0;
 
       for (let i = 0; i < houseNumber.length; i++) {
-        const digit = houseNumber[i];
-        if (!isNaN(digit)) {
-          const digitValue = parseInt(digit);
-          sum += digitValue;
-        }
+        const char = houseNumber[i].toLowerCase();
+        if (char === ' ') continue; // Skip spaces
+        const digitValue = charToValue[char] !== undefined ? charToValue[char] : (!isNaN(char) ? parseInt(char) : 0);
+        sum += digitValue;
       }
 
       while (sum > 9) {
